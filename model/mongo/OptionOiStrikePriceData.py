@@ -1,6 +1,4 @@
 from dataclasses import dataclass
-from datetime import date
-from tokenize import Double
 
 @dataclass
 class OptionOiStrikePriceData:

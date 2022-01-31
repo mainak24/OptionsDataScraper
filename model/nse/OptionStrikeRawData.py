@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from tokenize import Double
 from typing import Optional
 
 from model.nse.OptionStrikePriceRawData import OptionStrikePriceRawData
