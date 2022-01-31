@@ -1,9 +1,8 @@
 from dataclasses import dataclass
-
-from model.mongo.OptionOiStrikePriceData import OptionOIStrikePriceData
-
+from typing import Optional
+from model.mongo.OptionOiStrikePriceData import OptionOiStrikePriceData
 
 @dataclass
 class OptionOiStrikeData:
     strikePrice: float
-    strikePriceData: list[OptionOIStrikePriceData]
+    strikePriceData: Optional[list[OptionOiStrikePriceData]]

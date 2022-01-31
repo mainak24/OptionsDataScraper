@@ -7,7 +7,7 @@ from model.nse.OptionChainRawRecords import OptionChainRawRecords
 
 class NseOptionDataService:
 
-    def getOptionChainData(self, symbol):
+    def getOptionChainData(self, symbol) -> OptionChainRawRecords:
         session = requests.Session()
         params = {"symbol": symbol}
         headers= {"User-Agent": "Python-Script", 
@@ -16,6 +16,10 @@ class NseOptionDataService:
                   "Connection": "keep-alive",
                   "Host": "www.nseindia.com"}
         response = session.get(url = NseConstants.URL.value, headers=headers, timeout=3, params=params)
-        data = response.json()
-        rawData = from_dict(data_class=OptionChainRawRecords, data=data["records"])
+        try:
+            data = response.json()
+            rawData = from_dict(data_class=OptionChainRawRecords, data=data["records"])
+        except:
+            rawData = None
+
         return rawData

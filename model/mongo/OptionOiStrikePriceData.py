@@ -3,7 +3,7 @@ from datetime import date
 from tokenize import Double
 
 @dataclass
-class OptionOIStrikePriceData:
+class OptionOiStrikePriceData:
     time: float
     openInterest: float
     totalTradedVolume: int

@@ -1,12 +1,9 @@
 from dataclasses import dataclass
-from datetime import date
-from tokenize import Double
+from typing import Dict, Optional
 from model.mongo.OptionOiStrikeData import OptionOiStrikeData
-
-from model.mongo.OptionTypeEnum import OptionType
 
 @dataclass
 class OptionOiExpiryData:
     expiryDate: str
-    type: OptionType
-    strikePriceData: list[OptionOiStrikeData]
+    callStrikeData: Optional[Dict[str, OptionOiStrikeData]]
+    putStrikeData: Optional[Dict[str, OptionOiStrikeData]]

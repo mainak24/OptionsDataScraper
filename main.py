@@ -1,14 +1,23 @@
 from dataclasses import asdict
-from repository.OptionOiRepository import OptionOiRepository
+from constants.NseConstants import NseConstants
+from repository.OptionOiMongoRepository import OptionOiMongoRepository
 from constants.RepositoryConstants import RepositoryConstants
-from service.NseOptionDataService import NseOptionDataService
+from service.OptionOiConvertRawDataService import OptionOiConvertRawDataService
+import json
 
 
-nseDataService = NseOptionDataService()
+optionDataService = OptionOiConvertRawDataService()
+data = None
+count = 0
+while data == None and count != NseConstants.MAX_RETRY.value:
+    data = optionDataService.getOptionExpiryData("NIFTY")
 
-data = nseDataService.getOptionChainData("NIFTY")
+repo = OptionOiMongoRepository(RepositoryConstants.MONGO_URL.value, RepositoryConstants.DATABASE.value)
 
-repo = OptionOiRepository(RepositoryConstants.MONGO_URL.value, RepositoryConstants.DATABASE.value)
 
-repo.addRecord("NIFTY", asdict(data))
+# print(repo.getRecord("NIFTY", "03-Feb-2022"))
+
+# repo.updateStrikePriceData("NIFTY", data)
+
+print(count)
 
