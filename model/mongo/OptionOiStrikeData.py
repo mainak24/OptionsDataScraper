@@ -5,4 +5,4 @@ from model.mongo.OptionOiStrikePriceData import OptionOiStrikePriceData
 @dataclass
 class OptionOiStrikeData:
     strikePrice: float
-    strikePriceData: Optional[list[OptionOiStrikePriceData]]
+    # strikePriceData: Optional[list[OptionOiStrikePriceData]]
