@@ -9,13 +9,6 @@ data = optionDataService.convertDataToMongo(GlobalConstants.DATA_SOURCE.value, "
 
 repo = OptionOiMongoRepository(RepositoryConstants.MONGO_URL.value, RepositoryConstants.DATABASE.value)
 
-
-# print(repo.getRecord("NIFTY", "03-Feb-2022"))
-
 repo.updateStrikePriceData("NIFTY", data)
-
-# print(count)
-
-# print(data)
 
 
