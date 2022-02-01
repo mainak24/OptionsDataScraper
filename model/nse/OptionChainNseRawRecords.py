@@ -1,11 +1,11 @@
 from dataclasses import dataclass
 
-from model.nse.OptionStrikeRawData import OptionStrikeRawData
+from model.nse.OptionStrikeNseRawData import OptionStrikeNseRawData
 
 @dataclass
-class OptionChainRawRecords:
+class OptionChainNseRawRecords:
     timestamp: str
     underlyingValue: float
     expiryDates: list[str]
-    data: list[OptionStrikeRawData]
+    data: list[OptionStrikeNseRawData]
     strikePrices: list[int]

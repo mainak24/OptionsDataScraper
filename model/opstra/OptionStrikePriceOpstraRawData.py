@@ -1,8 +1,7 @@
 from dataclasses import dataclass
 
 @dataclass
-class OptionOiStrikePriceData:
-    time: str
+class OptionStrikePriceOpstraRawData:
     CITMP: float
     CallChng: float
     CallDelta: float
@@ -25,5 +24,4 @@ class OptionOiStrikePriceData:
     PutTheta: float
     PutVega: float
     PutVolume: float
-    underlyingAssetValue: float
-    futurePrice: float
+    StrikePrice: int

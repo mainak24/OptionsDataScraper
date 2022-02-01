@@ -1,8 +1,9 @@
 from dataclasses import dataclass
+from typing import Dict, Optional
 
 from model.mongo.OptionOiExpiryData import OptionOiExpiryData
 
 @dataclass
-class OptionOIStrikeData:
+class OptionOiData:
     underlying: str
-    expiryData: list[OptionOiExpiryData]
+    expiryData: Optional[Dict[str, OptionOiExpiryData]]

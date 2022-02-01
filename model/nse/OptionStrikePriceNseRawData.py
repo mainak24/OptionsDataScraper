@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 @dataclass
-class OptionStrikePriceRawData:
+class OptionStrikePriceNseRawData:
     strikePrice: int
     expiryDate: str
     underlying: str

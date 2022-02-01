@@ -3,5 +3,4 @@ import enum
 class NseConstants(enum.Enum):
     URL = "https://www.nseindia.com/api/option-chain-indices"
     NIFTY = "NIFTY"
-    NIFTY_BANK = "NIFTY_BANK"
-    MAX_RETRY = 10
+    NIFTY_BANK = "BANKNIFTY"

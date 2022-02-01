@@ -2,6 +2,7 @@
 from dataclasses import asdict
 from pymongo import MongoClient
 from dacite import from_dict
+from model.mongo.OptionOiData import OptionOiData
 
 from model.mongo.OptionOiExpiryData import OptionOiExpiryData
 
@@ -33,26 +34,19 @@ class OptionOiMongoRepository:
         return None
 
 
-    def updateStrikePriceData(self, collection, expiryDataList: list[OptionOiExpiryData]):
-        for expiryData in expiryDataList:
+    def updateStrikePriceData(self, collection, optionData: OptionOiData):
+        for expiryData in optionData.expiryData.values():
             record = self.getRecord(collection=collection, date=expiryData.expiryDate)
             if record == None:
-                self.addRecord(collection=collection, rec=asdict(expiryData))
+                rec = asdict(expiryData)
+                self.addRecord(collection=collection, rec=rec)
             else:
-                if record.callStrikeData != None:
-                    for strikePrice in record.callStrikeData.keys():
-                        if strikePrice in expiryData.callStrikeData.keys():
-                            record.callStrikeData[strikePrice].strikePriceData.extend(expiryData.callStrikeData[strikePrice].strikePriceData)
-                else:
-                    record.callStrikeData = expiryData.callStrikeData.copy()
+                for strikePrice in record.strikeData.keys():
+                    if strikePrice in expiryData.strikeData.keys():
+                        for time in expiryData.strikeData[strikePrice].strikePriceHistoricalData.keys():
+                            record.strikeData[strikePrice].strikePriceHistoricalData[time] = expiryData.strikeData[strikePrice].strikePriceHistoricalData[time]
 
-                if record.putStrikeData != None:
-                    for strikePrice in record.putStrikeData.keys():
-                        if strikePrice in expiryData.putStrikeData.keys():
-                            record.putStrikeData[strikePrice].strikePriceData.extend(expiryData.putStrikeData[strikePrice].strikePriceData)
-                else:
-                    record.putStrikeData = expiryData.putStrikeData.copy()
-
-                self.updateRecord(collection=collection, date=expiryData.expiryDate, rec=asdict(record))
+                rec = asdict(record)
+                self.updateRecord(collection=collection, date=expiryData.expiryDate, rec=rec)
 
 

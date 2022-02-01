@@ -1,8 +1,8 @@
 from dataclasses import dataclass
-from typing import Optional
+from typing import Dict, Optional
 from model.mongo.OptionOiStrikePriceData import OptionOiStrikePriceData
 
 @dataclass
 class OptionOiStrikeData:
-    strikePrice: float
-    strikePriceData: Optional[list[OptionOiStrikePriceData]]
+    strikePrice: int
+    strikePriceHistoricalData: Optional[Dict[str, OptionOiStrikePriceData]]
