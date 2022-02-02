@@ -51,7 +51,7 @@ class SchedulerService:
     def __isDelayLapsed(self):
         difference = (datetime.now() - self.lastUpdatedTime)
         differenceInMin = divmod(difference.days * 24*60*60 + difference.seconds, 60)
-        print(differenceInMin)
+        # print(differenceInMin)
         if differenceInMin[0] >= GlobalConstants.DATA_SNAPSHOT_TIME_GAP.value and differenceInMin[1] >= GlobalConstants.DATA_SNAPSHOT_TIME_GAP_TOLERANCE.value:
             return True
         
