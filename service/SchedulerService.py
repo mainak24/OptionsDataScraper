@@ -27,7 +27,7 @@ class SchedulerService:
                 self.repo.updateStrikePriceData(OpstraConstants.NIFTY.value, niftyData)
 
                 print("Data Saved, Party!!!")
-                time.sleep(GlobalConstants.DATA_SNAPSHOT_TIME_GAP.value * 60 - GlobalConstants.DATA_SNAPSHOT_TIME_GAP_TOLERANCE.value * 5)
+                time.sleep(GlobalConstants.DATA_SNAPSHOT_TIME_GAP.value * 60 - GlobalConstants.DATA_SNAPSHOT_TIME_GAP_TOLERANCE.value * 10)
         else:
             print("Market Off, Sleeping")
             sec = self.__getSecondsTillMarketOpen()
@@ -63,14 +63,14 @@ class SchedulerService:
         if self.__isWeekDay():
             time = currentTime.hour + currentTime.minute/60
             if time < GlobalConstants.MARKET_START_TIME.value:
-                output += (GlobalConstants.MARKET_START_TIME.value - time) * 60 * 60 - GlobalConstants.DATA_SNAPSHOT_TIME_GAP_TOLERANCE.value;
-            elif time < GlobalConstants.MARKET_START_TIME.value and (GlobalConstants.MARKET_START_TIME.value - time) * 60 * 60 < GlobalConstants.DATA_SNAPSHOT_TIME_GAP_TOLERANCE.value * 5:
+                output += (GlobalConstants.MARKET_START_TIME.value - time) * 60 * 60 - GlobalConstants.DATA_SNAPSHOT_TIME_GAP_TOLERANCE.value * 5;
+            elif time < GlobalConstants.MARKET_START_TIME.value and (GlobalConstants.MARKET_START_TIME.value - time) * 60 * 60 < GlobalConstants.DATA_SNAPSHOT_TIME_GAP_TOLERANCE.value * 10:
                 return 0
             elif time > GlobalConstants.MARKET_END_TIME.value:
-                output += (24.0 - GlobalConstants.MARKET_END_TIME.value + GlobalConstants.MARKET_START_TIME.value) * 60 * 60 - GlobalConstants.DATA_SNAPSHOT_TIME_GAP_TOLERANCE.value;
+                output += (24.0 - GlobalConstants.MARKET_END_TIME.value + GlobalConstants.MARKET_START_TIME.value) * 60 * 60 - GlobalConstants.DATA_SNAPSHOT_TIME_GAP_TOLERANCE.value * 5;
         else:
             output += (24.0 - GlobalConstants.MARKET_END_TIME.value) * 60 * 60;
-            output += (6 - currentTime.weekday()) * 24 * 60 * 60 + GlobalConstants.MARKET_START_TIME.value * 60 * 60 - GlobalConstants.DATA_SNAPSHOT_TIME_GAP_TOLERANCE.value
+            output += (6 - currentTime.weekday()) * 24 * 60 * 60 + GlobalConstants.MARKET_START_TIME.value * 60 * 60 - GlobalConstants.DATA_SNAPSHOT_TIME_GAP_TOLERANCE.value * 5
 
 
         return output

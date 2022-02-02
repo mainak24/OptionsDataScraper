@@ -8,5 +8,5 @@ class GlobalConstants(enum.Enum):
     MARKET_START_TIME = 5.5 # .25 means 15 mins - scaled to 0-99
     MARKET_END_TIME = 15.5
     DATA_SNAPSHOT_TIME_GAP = 1 # in min
-    DATA_SNAPSHOT_TIME_GAP_TOLERANCE = 2 # in sec
+    DATA_SNAPSHOT_TIME_GAP_TOLERANCE = 3 # in sec
     MAX_RETRY = 10
