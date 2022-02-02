@@ -11,5 +11,5 @@ scheduler = SchedulerService()
 while True:
     scheduler.fetchIndexDataPeriodically()
     # print("Sleep End")
-    time.sleep(60)
+    time.sleep(5)
 
