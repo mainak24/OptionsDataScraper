@@ -11,5 +11,5 @@ scheduler = SchedulerService()
 while True:
     scheduler.fetchIndexDataPeriodically()
     # print("Sleep End")
-    time.sleep(5)
+    time.sleep(GlobalConstants.DATA_SNAPSHOT_TIME_GAP_TOLERANCE.value)
 
