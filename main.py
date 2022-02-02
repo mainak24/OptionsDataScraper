@@ -1,3 +1,4 @@
+import time
 from constants.OpstraConstants import OpstraConstants
 from repository.OptionOiMongoRepository import OptionOiMongoRepository
 from constants.RepositoryConstants import RepositoryConstants
@@ -10,6 +11,5 @@ scheduler = SchedulerService()
 while True:
     scheduler.fetchIndexDataPeriodically()
     # print("Sleep End")
-
-
+    time.sleep(60)
 

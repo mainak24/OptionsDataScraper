@@ -27,11 +27,11 @@ class SchedulerService:
                 self.repo.updateStrikePriceData(OpstraConstants.NIFTY.value, niftyData)
 
                 print("Data Saved, Party!!!")
-                time.sleep(GlobalConstants.DATA_SNAPSHOT_TIME_GAP.value * 60 - GlobalConstants.DATA_SNAPSHOT_TIME_GAP_TOLERANCE.value * 10)
+                # time.sleep(GlobalConstants.DATA_SNAPSHOT_TIME_GAP.value * 60 - GlobalConstants.DATA_SNAPSHOT_TIME_GAP_TOLERANCE.value * 10)
         else:
             print("Market Off, Sleeping")
             sec = self.__getSecondsTillMarketOpen()
-            time.sleep(sec)
+            # time.sleep(sec)
 
         return
 
