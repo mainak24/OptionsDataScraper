@@ -1,14 +1,15 @@
+from constants.OpstraConstants import OpstraConstants
 from repository.OptionOiMongoRepository import OptionOiMongoRepository
 from constants.RepositoryConstants import RepositoryConstants
 from constants.GlobalConstants import GlobalConstants
 from service.OptionOiConvertRawDataService import OptionOiConvertRawDataService
+from service.SchedulerService import SchedulerService
 
+scheduler = SchedulerService()
 
-optionDataService = OptionOiConvertRawDataService()
-data = optionDataService.convertDataToMongo(GlobalConstants.DATA_SOURCE.value, "NIFTY")
+while True:
+    scheduler.fetchIndexDataPeriodically()
+    # print("Sleep End")
 
-repo = OptionOiMongoRepository(RepositoryConstants.MONGO_URL.value, RepositoryConstants.DATABASE.value)
-
-repo.updateStrikePriceData("NIFTY", data)
 
 

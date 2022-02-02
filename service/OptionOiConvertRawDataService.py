@@ -14,7 +14,7 @@ from model.mongo.OptionOiStrikePriceData import OptionOiStrikePriceData
 
 class OptionOiConvertRawDataService:
 
-    def convertDataToMongo(self, source, symbol) -> OptionOiData:
+    def fetchDataForMongo(self, source, symbol) -> OptionOiData:
         output = None
         if source == DataSourceEnum.NSE.value:
             output = self.__convertNseOptionData(symbol)
